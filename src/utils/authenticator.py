@@ -1,7 +1,7 @@
 import datetime
 from http import HTTPStatus
 
-import jwt
+from jose import JWTError, jwt 
 from fastapi.exceptions import HTTPException
 from passlib.context import CryptContext
 
@@ -29,7 +29,7 @@ class Authenticator:
         try:
             jwt_payload = jwt.decode(token, SECRET, algorithms=["HS256"])
             return jwt_payload
-        except Exception:
+        except JWTError:
             raise HTTPException(
                 status_code=HTTPStatus.FORBIDDEN.value,
                 detail="Could not validate credentials",
