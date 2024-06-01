@@ -13,7 +13,7 @@ from src.utils.authenticator import Authenticator
 reuseable_oauth = OAuth2PasswordBearer(tokenUrl="v1/users/signin", scheme_name="JWT")
 
 
-class UserService:
+class AuthenticationService:
     def __init__(self):
         self._session = DatabaseConnection()
         self._repository = SqlAlchemyRepository(self._session)
